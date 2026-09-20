@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bfki00yxikglw" path="res://Pet/Scripts/PetStateMachine.cs" id="3_7cofk"]
 [ext_resource type="Script" uid="uid://delfh8p2jrr25" path="res://Pet/Scripts/States/Walk.cs" id="4_roljp"]
 [ext_resource type="Script" uid="uid://pulvkou61bwq" path="res://Pet/Scripts/States/Idle.cs" id="5_6c7a7"]
+[ext_resource type="AudioStream" uid="uid://l74e0ctaulhh" path="res://Pet/Audio/Joker-persona-5-2026-09-20-23-00-You-thought-you-could-chain-my-soul-Look-closely.mp3" id="6_roljp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvath"]
 atlas = ExtResource("3_4v6mm")
@@ -84,3 +85,6 @@ MoveSpeed = 60
 [node name="Idle" type="Node2D" parent="PetStateMachine" unique_id=1273281004]
 unique_name_in_owner = true
 script = ExtResource("5_6c7a7")
+_Dialog = ExtResource("6_roljp")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1812322248]

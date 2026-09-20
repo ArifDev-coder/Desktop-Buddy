@@ -6,6 +6,8 @@ namespace Pet.States;
 
 public partial class Idle : PetState
 {
+	[Export] private AudioStream _Dialog;
+
 	public override void Init()
 	{
 	}
@@ -15,6 +17,8 @@ public partial class Idle : PetState
 		GD.Print("Entering Idle State!");
 
 		Pet.Anim.Play("idle");
+
+		Pet.PlayAudio(_Dialog);
 
 	}
 

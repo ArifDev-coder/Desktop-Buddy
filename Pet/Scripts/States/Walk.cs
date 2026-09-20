@@ -6,8 +6,11 @@ namespace Pet.States;
 
 public partial class Walk : PetState
 {
-	[Export]
-	public int MoveSpeed { get; set; } = 80;
+	[Export] public int MoveSpeed { get; set; } = 80;
+	[Export] public float Acceleration { get; set; } = 400f;
+
+	private float _currentSpeed { get; set; }
+	private float _speedMultiplier { get; set; } = 1f;
 
 	private Vector2 _floatPosition;
 
@@ -19,6 +22,9 @@ public partial class Walk : PetState
 	public override void Enter()
 	{
 		GD.Print("Entering Walk State!");
+
+		_currentSpeed = 0f;
+		_speedMultiplier = (float)GD.RandRange(0.9, 1.1);
 
 		Pet.Anim.Play("walk");
 
@@ -47,14 +53,18 @@ public partial class Walk : PetState
 
 	public override PetState PhysicsProcess(double delta)
 	{
+		_currentSpeed = Mathf.Min(_currentSpeed + Acceleration * (float)delta, MoveSpeed * _speedMultiplier);
+
 		Vector2 dir = new Vector2(Pet.Direction.X, Pet.Direction.Y);
-		Vector2 moveVector = dir * MoveSpeed * (float)delta;
+		Vector2 moveVector = dir * _currentSpeed * (float)delta;
 
 		_floatPosition += moveVector;
 		Pet.Window.Position = new Vector2I(
 			Mathf.RoundToInt(_floatPosition.X),
 			Mathf.RoundToInt(_floatPosition.Y)
 		);
+
+		Pet.Anim.SpeedScale = Mathf.Clamp(_currentSpeed / MoveSpeed, 0.2f, 1.5f);
 
 		if (Pet.Window.Position.X + Pet.Window.Size.X > Pet.UsableRect.End.X)
 		{

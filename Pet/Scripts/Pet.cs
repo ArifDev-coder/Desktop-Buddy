@@ -14,12 +14,14 @@ public partial class Pet : Node2D
 	public PetStateMachine PetStateMachine { get; set; }
 	public AnimatedSprite2D Anim { get; set; }
 	public Area2D Area { get; set; }
+	public AudioStreamPlayer2D AudioPlayer { get; set; }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		Window = GetWindow();
 
+		DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.NoFocus, true);
 		GetViewport().TransparentBg = true;
 		Window.Transparent = true;
 		Window.Borderless = true;
@@ -34,10 +36,19 @@ public partial class Pet : Node2D
 
 		Anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		PetStateMachine = GetNode<PetStateMachine>("PetStateMachine");
+		AudioPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 		Area = GetNode<Area2D>("Area2D");
 		Area.InputEvent += OnAreaInput;
 
 		PetStateMachine.Init(this);
+	}
+
+	public void PlayAudio(AudioStream audio)
+	{
+		if (audio == null) return;
+
+		AudioPlayer.Stream = audio;
+		AudioPlayer.Play();
 	}
 
 	private void OnAreaInput(Node viewport, InputEvent @event, long shapeIdx)
