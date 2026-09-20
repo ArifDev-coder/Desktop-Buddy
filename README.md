@@ -38,6 +38,8 @@ The current focus is building a solid foundation and architecture before adding 
 - Notifications and reminders
 - Cross-platform support
   - Windows — Primary
-  - Linux — Planned
+  - Linux — Primary
+  - Android — Maybe
+  - Ios  — Maybe
 
 More features will be added as development progresses.
