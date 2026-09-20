@@ -29,6 +29,7 @@ public partial class Walk : PetState
 
 	public override PetState HandleInput(InputEvent @event)
 	{
+		// Di Idle State juga sama
 		if (@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex == MouseButton.Left && mouseButton.IsPressed())
 		{
 			return Idle;

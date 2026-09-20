@@ -25,7 +25,7 @@ public partial class Idle : PetState
 
 	public override PetState HandleInput(InputEvent @event)
 	{
-		if (@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex == MouseButton.Right && mouseButton.IsPressed())
+		if (@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex == MouseButton.Left && mouseButton.IsPressed())
 		{
 			GD.Print("Pressed");
 

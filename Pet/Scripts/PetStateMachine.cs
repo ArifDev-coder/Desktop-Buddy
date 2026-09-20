@@ -36,11 +36,12 @@ public partial class PetStateMachine : Node2D
 		ChangeState(newState);
 	}
 
-	public override void _UnhandledInput(InputEvent @event)
-	{
-		PetState newState = CurrentState.HandleInput(@event);
-		ChangeState(newState);
-	}
+	// ! This Method breaks the OnAreaInput method inside Pet Class
+	// public override void _UnhandledInput(InputEvent @event)
+	// {
+	// 	PetState newState = CurrentState.HandleInput(@event);
+	// 	ChangeState(newState);
+	// }
 
 	public void ChangeState(PetState newState)
 	{
