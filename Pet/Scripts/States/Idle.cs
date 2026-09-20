@@ -1,5 +1,8 @@
 using Godot;
+using Pet;
 using System;
+
+namespace Pet.States;
 
 public partial class Idle : PetState
 {

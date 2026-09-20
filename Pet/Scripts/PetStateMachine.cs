@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 using System.Linq;
 
+namespace Pet;
 
 public partial class PetStateMachine : Node2D
 {

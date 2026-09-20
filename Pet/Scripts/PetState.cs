@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Diagnostics;
 
+namespace Pet;
+
 public partial class PetState : Node2D
 {
 	public static Pet Pet { get; set; }

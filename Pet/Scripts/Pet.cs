@@ -1,19 +1,19 @@
 using Godot;
 using System;
 
+namespace Pet;
+
 public partial class Pet : Node2D
 {
-	public Window Window;
+	public Window Window { get; set; }
 
-	public Rect2I UsableRect;
-	public int TargetY;
+	public Rect2I UsableRect { get; set; }
+	public int TargetY { get; set; }
 	public Vector2I Direction { get; set; }
 
-	public PetStateMachine PetStateMachine;
-	public AnimatedSprite2D Anim;
-	public Area2D Area;
-
-	private ulong _lasClickMs = 0;
+	public PetStateMachine PetStateMachine { get; set; }
+	public AnimatedSprite2D Anim { get; set; }
+	public Area2D Area { get; set; }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

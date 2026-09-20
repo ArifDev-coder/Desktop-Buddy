@@ -1,6 +1,9 @@
 using Godot;
+using Pet;
 using System;
 using System.Numerics;
+
+namespace Pet.States;
 
 public partial class Walk : PetState
 {
