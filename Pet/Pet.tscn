@@ -79,6 +79,7 @@ script = ExtResource("3_7cofk")
 [node name="Walk" type="Node2D" parent="PetStateMachine" unique_id=99119427]
 unique_name_in_owner = true
 script = ExtResource("4_roljp")
+MoveSpeed = 60
 
 [node name="Idle" type="Node2D" parent="PetStateMachine" unique_id=1273281004]
 unique_name_in_owner = true

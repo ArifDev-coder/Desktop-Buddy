@@ -1,18 +1,19 @@
 using Godot;
 using Pet;
 using System;
-using System.Numerics;
 
 namespace Pet.States;
 
 public partial class Walk : PetState
 {
 	[Export]
-	public int MoveSpeed { get; set; } = 1;
+	public int MoveSpeed { get; set; } = 80;
 
+	private Vector2 _floatPosition;
 
 	public override void Init()
 	{
+		_floatPosition = Pet.Window.Position;
 	}
 
 	public override void Enter()
@@ -20,6 +21,7 @@ public partial class Walk : PetState
 		GD.Print("Entering Walk State!");
 
 		Pet.Anim.Play("walk");
+
 	}
 
 	public override void Exit()
@@ -45,10 +47,14 @@ public partial class Walk : PetState
 
 	public override PetState PhysicsProcess(double delta)
 	{
-		Vector2I dir = Pet.Direction;
-		Vector2I moveVector = dir * MoveSpeed;
+		Vector2 dir = new Vector2(Pet.Direction.X, Pet.Direction.Y);
+		Vector2 moveVector = dir * MoveSpeed * (float)delta;
 
-		Pet.Window.Position += moveVector;
+		_floatPosition += moveVector;
+		Pet.Window.Position = new Vector2I(
+			Mathf.RoundToInt(_floatPosition.X),
+			Mathf.RoundToInt(_floatPosition.Y)
+		);
 
 		if (Pet.Window.Position.X + Pet.Window.Size.X > Pet.UsableRect.End.X)
 		{
