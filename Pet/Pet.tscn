@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://hm57pmvsmcpy"]
+
+[ext_resource type="Script" uid="uid://ceyp88lphse8f" path="res://Pet/Scripts/Pet.cs" id="1_4v6mm"]
+[ext_resource type="Texture2D" uid="uid://ddnjldd1o8ey3" path="res://Pet/Sprites/JokerP5R-Sheet.png" id="3_4v6mm"]
+[ext_resource type="Script" uid="uid://bfki00yxikglw" path="res://Pet/Scripts/PetStateMachine.cs" id="3_7cofk"]
+[ext_resource type="Script" uid="uid://delfh8p2jrr25" path="res://Pet/Scripts/States/Walk.cs" id="4_roljp"]
+[ext_resource type="Script" uid="uid://pulvkou61bwq" path="res://Pet/Scripts/States/Idle.cs" id="5_6c7a7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvath"]
+atlas = ExtResource("3_4v6mm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v6mm"]
+atlas = ExtResource("3_4v6mm")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bykdt"]
+atlas = ExtResource("3_4v6mm")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn6bg"]
+atlas = ExtResource("3_4v6mm")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujbnf"]
+atlas = ExtResource("3_4v6mm")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4v6mm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvath")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v6mm")
+}],
+"loop": 2,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bykdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn6bg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujbnf")
+}],
+"loop": 2,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glv2v"]
+size = Vector2(26, 38)
+
+[node name="Pet" type="Node2D" unique_id=1684596403]
+script = ExtResource("1_4v6mm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2088576100]
+position = Vector2(-2, -23)
+sprite_frames = SubResource("SpriteFrames_4v6mm")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.4567604
+
+[node name="Area2D" type="Area2D" parent="." unique_id=579193420]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2035318166]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_glv2v")
+
+[node name="PetStateMachine" type="Node2D" parent="." unique_id=1563636874]
+script = ExtResource("3_7cofk")
+
+[node name="Walk" type="Node2D" parent="PetStateMachine" unique_id=99119427]
+unique_name_in_owner = true
+script = ExtResource("4_roljp")
+
+[node name="Idle" type="Node2D" parent="PetStateMachine" unique_id=1273281004]
+unique_name_in_owner = true
+script = ExtResource("5_6c7a7")
